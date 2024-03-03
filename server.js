@@ -1,3 +1,19 @@
+// MySQL + Node.js 접속 코드
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'rhdqngkwk',
+    database: 'myboard'
+});
+
+conn.connect();
+
+conn.query("select * from post", function(err, rows, fields) {
+    if (err) throw err;
+    console.log(rows);
+});
+
 const express = require('express');
 const app = express();
 
