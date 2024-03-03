@@ -1,18 +1,19 @@
 // MySQL + Node.js 접속 코드
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'rhdqngkwk',
+    password: 'Qwer1234!',
     database: 'myboard'
 });
 
 conn.connect();
 
-conn.query("select * from post", function(err, rows, fields) {
-    if (err) throw err;
-    console.log(rows);
-});
+// conn.query("select * from post", function(err, rows, fields) {
+//     if (err) throw err;
+//     console.log(rows);
+// });
+
 
 const express = require('express');
 const app = express();
@@ -38,4 +39,12 @@ app.get('/book', function(req, res) {
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/list', function(req, res) {
+    console.log('데이터베이스를 조회합니다.');
+    conn.query("select * from post", function(err, rows, fields) {
+        if (err) throw err;
+        console.log(rows);
+    });
 });
